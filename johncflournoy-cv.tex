@@ -1,0 +1,347 @@
+%%% A template to produce a nice-looking Curriculum Vitae.
+%%% Kieran Healy <kjhealy@gmail.com>
+%%% Most recent version is at http://kjhealy.github.com/kjh-vita
+%%%
+%%% ------------------------------------------------------------------------
+%%% Requirements that are included in a modern tex distribution:
+%%% ------------------------------------------------------------------------
+%%% xelatex
+%%% fontspec.sty
+%%% hyperrref.sty
+%%% xunicode.sty
+%%% color.sty
+%%% url.sty
+%%% fancyhdr.sty
+%%% memoir.cls
+%%% fontawesome.sty
+%%%
+%%% 
+%%% 
+%%% ------------------------------------------------------------------------
+%%% Requirements from https://github.com/kjhealy/latex-custom-kjh
+%%% ------------------------------------------------------------------------
+%%% org-preamble-xelatex.sty
+%%% memoir-article-styles.sty
+%%%
+%%% ------------------------------------------------------------------------
+%%% Optional
+%%% ------------------------------------------------------------------------
+%%% git
+%%% vc.sty
+%%% revnum.sty
+%%% Fonts
+%%%
+%%% ------------------------------------------------------------------------
+%%% Note
+%%%------------------------------------------------------------------------
+%%% Because this is a hand-tweaked file, be on the look out for \medksip, 
+%%% \bigskip and \newpage commands here and there, which are used to balance
+%%% the layout or avoid widows & orphans, etc. You should of course add or 
+%%% remove these as needed.
+%%%------------------------------------------------------------------------
+
+\documentclass[11pt,article,oneside]{memoir}   
+\usepackage{org-preamble-xelatex} 
+\usepackage{fontawesome,url}
+
+
+%%%------------------------------------------------------------------------
+%%% Metadata
+%%%------------------------------------------------------------------------
+
+%% Change as needed. Or just add me as a coauthor. Only some of these are 
+%% used below in the hyperref declaration and address banner section.
+\def\myauthor{John C. Flournoy}
+\def\mytitle{Vita}
+\def\mycopyright{\myauthor}
+\def\mykeywords{}
+\def\mybibliostyle{plain}
+\def\mybibliocommand{}
+\def\mysubtitle{}
+\def\myaffiliation{Harvard University}
+\def\myaddress{Department of Psychology}
+\def\myemail{john\_flournoy@fas.harvard.edu}
+\def\myweb{jflournoy.github.io}
+\def\myorcid{orcid.org/0000-0003-1735-1221}
+\def\mygithub{github.com/jflournoy}
+\def\myphone{(415) 260-2744}
+\def\myfax{}
+\def\mytwitter{@flourneuro}
+\def\myversion{}
+\def\myrevision{}
+
+\def\myaffiliation{University of Oregon}
+\def\myauthor{John C. Flournoy}
+\date{\today} % not used (revision control instead)
+\def\mykeywords{Flournoy, John Flournoy, Vita, CV, Resume, Psychology, Neuroscience}
+
+%%%------------------------------------------------------------------------  
+%%% Git version tracking 
+%%%------------------------------------------------------------------------
+
+%% If you don't use git or the vc package (from CTAN), comment this out.
+%% If you comment it out, be sure to remove the \rfoot comment below, too.
+% \input{vc}
+
+%% uncomment if you want to use biblatex
+% \usepackage{enable-biblatex}
+
+%%%------------------------------------------------------------------------
+%%% Document
+%%%------------------------------------------------------------------------
+\begin{document}
+
+%% Choose fonts for use with xelatex
+%% Minion and Myriad are widely available, from Adobe. 
+%% Pragmata is available to buy at http://www.fsd.it/fonts/pragma.htm
+%% and is worth every penny. Any good monospace font will work fine, though.
+%% Consolas or inconsolata are good alternatives.
+
+%% Use Caladea instead, which is already available on the server
+\setromanfont[Mapping={tex-text}, 
+	Numbers={OldStyle},
+	Ligatures={Common}]%{Minion Pro}
+    {Caladea}
+    
+%% Use Cabin instead, which is already available on the server
+\setsansfont[Mapping=tex-text,
+	Ligatures={Common}, 
+	Colour=AA0000]%{Unit-Medium}
+    {Cabin}
+
+%% Use Fira Mono instead, which is already available on the server
+\setmonofont[Mapping=tex-text,Scale=0.85]%{PragmataPro} 
+{Fira Mono}
+
+% \newfontface\scheader[SmallCapsFont={Minion Pro},SmallCapsFeatures={Letters=SmallCaps}]{Minion Pro}
+%% Caladea doesn't have small caps, so don't use this.
+\let\scheader\relax
+
+% \newfontface\addressblock[Mapping={tex-text}, 
+% 	Numbers={OldStyle},
+% 	Ligatures={Common}]{Minion Pro Medium Caption}
+\newfontface\addressblock[Mapping={tex-text}, 
+	Numbers={OldStyle},
+	Ligatures={Common}]{Caladea}
+
+
+%%%------------------------------------------------------------------------
+%%% Local commands
+%%%------------------------------------------------------------------------
+
+%% Marginal header
+%% Note: as the document goes on you may need to introduce a (gradually increasing)
+%% \vspace element to keep the marginal header pleasingly aligned with the first 
+%% item in the body text. Like this: \marginhead{{\vskip 0.4em}Grants}, or 
+%% \marginhead{{\vskip 0.8em}Service}. Experiment as needed.
+\newcommand{\marginhead}[1]{\marginpar{\textsf{{\footnotesize\vspace{-1em}\flushright #1}}}}
+
+
+%% [optional] custom ampersand (font consistent with the one chosen above)
+% \newcommand{\amper}{{\fontspec[Scale=.95,Colour=AA0000]{Minion Pro Medium}\selectfont\&\,}}
+
+%% No bullets on labels
+\renewcommand{\labelitemi}{~} 
+
+%% Custom hanging indent for vita items
+\def\ind{\hangindent=1 true cm\hangafter=1 \noindent}
+%\def\ind{\hangindent=18pt\hangafter=1 \noindent}
+\def\labelitemi{~}
+\renewcommand{\labelitemii}{~}
+
+%%%------------------------------------------------------------------------
+%%% Page layout
+%%%------------------------------------------------------------------------
+
+% These lines will insert git revision info in the footer, using the vc
+% package---see docs for vc package for details. Comment out this line
+% if you're not using vc, and also remove the \input{vc} line above.
+\pagestyle{kjh}
+\thispagestyle{kjhgit}
+
+
+%%%------------------------------------------------------------------------
+%%% Address and contact block
+%%%------------------------------------------------------------------------
+\begin{minipage}[t]{2.95in}
+ \flushright {\footnotesize 
+ \href{https://psychology.fas.harvard.edu/}{Department of Psychology} \\ William James Hall \\ 33 Kirkland Street \\ \vspace{-0.05in}Cambridge, \textsc{MA} 02138}  
+  
+\end{minipage}
+\hfill     
+%\begin{minipage}[t]{0.0in}
+% dummy (needed here)
+%\end{minipage}
+\hfill
+\begin{minipage}[t]{1.8in}
+  \flushright \footnotesize  \addressblock \myphone \, \faPhone  \\ 
+  {\scriptsize  \texttt{\href{mailto:\myemail}{email}} \, \faEnvelope} \\
+  {\scriptsize  \texttt{\href{http://\myweb}{\myweb}} \, \faGlobe} \\
+  {\scriptsize  \texttt{\href{http://\mygithub}{\mygithub}} \, \faGithub} \\ 
+  {\scriptsize  \texttt{\href{http://twitter.com/flourneuro}{\mytwitter}} \, \faTwitter }
+\end{minipage}
+
+\medskip
+
+%% Name 
+% \noindent{\LARGE\scheader \textsc{john c flournoy}}
+\noindent{\Large\bfseries John C Flournoy}\newline\noindent{Postdoctoral Fellow}\newline\noindent{\today}
+\reversemarginpar
+
+\bigskip       
+
+
+%% Work
+% \medskip
+\marginhead{\sffamily {\vskip -0.4em} positions}
+
+\ind Postdoctoral Fellow, Harvard University, 2018--present
+
+\ind Graduate Research/Teaching Fellow, University of Oregon, 2012--2018
+
+\ind Research Coordinator, Stanford University School of Medicine, 2009--2012
+
+\bigskip
+
+%% Education
+
+\marginhead{\sffamily {{\vskip -0.23em} education}}
+
+\ind Ph.D. Psychology, University of Oregon, 2018
+
+\ind M.S. Psychology, University of Oregon, 2014
+
+\ind B.A. Cognitive Science, University of California, Berkeley, 2004
+
+\bigskip
+ 
+%% Publications
+\marginhead{\sffamily {\vskip 0.35em} journal articles}
+\medskip
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\ind Ludwig, R. M., \textbf{Flournoy, J. C.}, \& Berkman, E. T. (registration accepted). Inequality in personality and temporal discounting across socioeconomic status? Assessing the evidence. \textit{Journal of Research in Personality}.
+
+\ind Thalmayer, A. G., Saucier, G., \textbf{Flournoy, J. C.},  \&  Srivastava, S. (under review). Ethics-Relevant Values as Antecedents of Personality Change:
+Longitudinal Findings from the Life and Time Study.
+
+\ind Thalmayer, A. G., Saucier, G., Srivastava, S.,  \textbf{Flournoy, J. C.} \& Costello, C. C. (revision submitted). Ethics-Relevant Values in Adulthood: Longitudinal Findings from the Life and Time Study.
+
+\ind de Macks, Z. A. O., Flannery, J. E., Peake, S. J., \textbf{Flournoy, J. C.}, Mobasser, A., Alberti, S. L., ... \& Pfeifer, J. H. (2018). Novel insights from the Yellow Light Game: Safe and risky decisions differentially impact adolescent outcome-related brain function. \textit{NeuroImage}. \href{https://doi.org/10.1016/j.neuroimage.2018.06.058}{10.1016/j.neuroimage.2018.06.058}
+
+\ind Flannery, J. E., Giuliani, N., \textbf{Flournoy, J. C.}, \& Pfeifer, J. H. (2017). Neurodevelopmental Changes Across Adolescence in Viewing and Labeling Dynamic Peer Emotions. \textit{Developmental Cognitive Neuroscience}. \newline\href{http://dx.doi.org/10.1016/j.dcn.2017.02.003}{10.1016/j.dcn.2017.02.003}
+
+\ind Giuliani, N. R., \textbf{Flournoy, J. C.}, Ivie, E. J., Von Hippel, A., \& Pfeifer, J. H. (2017). Presentation and Validation of the DuckEES Child and Adolescent Dynamic Facial Expressions Stimulus Set. \textit{International Journal of Methods in Psychiatric Research}. \href{https://doi.org/10.1002/mpr.1553}{10.1002/mpr.1553}
+
+\ind King, K. M., Littlefield, A., McCabe, C., Mills, K. L., \textbf{Flournoy, J. C.}, \& Chassin, L. (2017). Longitudinal modeling in developmental neuroimaging research: Common challenges, and solutions from developmental psychology. \textit{Developmental Cognitive Neuroscience}. \href{https://doi.org/10.1016/j.dcn.2017.11.009}{10.1016/j.dcn.2017.11.009}
+
+\ind Leonard, J. A.\footnote{Authors contributed equally}, \textbf{Flournoy, J. C.}\footnotemark[1], Lewis-de los Angeles, C. P. \& Whitaker, K. J. (2017). How much motion is too much motion? Determining motion thresholds by sample size for reproducibility in developmental resting-state MRI. \textit{Research Ideas and Outcomes} 3: e12569. \href{https://doi.org/10.3897/rio.3.e12569}{10.3897/rio.3.e12569}
+
+\ind Madhyastha, T., Peverill, M., Koh, N., McCabe, C., \textbf{Flournoy, J. C.}, Mills, K. L., King, K. M., Pfeifer, J. H., \& McLaughlin, K. A. (2017). Current methods and limitations for longitudinal fMRI analysis across development. \textit{Developmental Cognitive Neuroscience}. \href{https://doi.org/10.1016/j.dcn.2017.11.006}{10.1016/j.dcn.2017.11.006}
+
+\ind Matta, T., \textbf{Flournoy, J. C.}, \& Byrne, M. (2017). Making an unknown unknown a known unknown: Missing data in longitudinal neuroimaging studies. \textit{Developmental Cognitive Neuroscience}. \href{https://doi.org/10.1016/j.dcn.2017.10.001}{10.1016/j.dcn.2017.10.001}.\newline PsyArXiv:\href{https://dx.doi.org/10.31234/osf.io/6hfxc}{10.31234/osf.io/6hfxc}
+
+\ind \textbf{Flournoy, J. C.}, Pfeifer, J. H., Moore, W. E., Tackman, A. M., Masten, C. L., Mazziotta, J. C., ... Dapretto, M. (2016). Neural Reactivity to Emotional Faces May Mediate the Relationship Between Childhood Empathy and Adolescent Prosocial Behavior. \textit{Child Development}, 87(6), 1691–1702. \newline\href{https://doi.org/10.1111/cdev.12630}{10.1111/cdev.12630}
+
+\ind Goodkind, M. S., Gallagher-Thompson, D., Thompson, L. W., Kesler, S. R., Anker, L., \textbf{Flournoy, J.}, ... O’Hara, R. M. (2015). The impact of executive function on response to cognitive behavioral therapy in late-life depression. \textit{International Journal of Geriatric Psychiatry}. \href{http://doi.org/10.1002/gps.4325}{10.1002/gps.4325}
+
+\ind O’Hara, R., Marcus, P., Thompson, W. K., \textbf{Flournoy, J.}, Vahia, I., Lin, X., ... Jeste, D. V. (2012). 5-HTTLPR Short Allele, Resilience, and Successful Aging in Older Adults. \textit{American Journal of Geriatric Psych}. \newline\href{http://doi.org/10.1097/JGP.0b013e31823e2d03}{10.1097/JGP.0b013e31823e2d03}
+
+
+%% Use revnumerate environment if numbered publications are needed. 
+%% (Include it above in the preamble).
+%% \renewcommand{\labelenumi}{\textsc{a}\theenumi.}
+%% \begin{revnumerate}
+\bigskip
+\marginhead{\sffamily {\vskip 0.35em} Talks}
+\medskip
+
+\ind (\textit{co-presenter}) Cosme, D. E., \textbf{Flournoy, J. C.}, Telzer, E., \& Pfeifer, J. H.  (2017, September). Traditional Modeling Approaches. Presented at the \href{https://osf.io/hym23/}{Modeling Developmental Change workshop}, Portland, OR.
+
+\ind (\textit{co-presenter}) \textbf{Flournoy, J. C.}, Cosme, D. E., \& Pfeifer, J. H. (2017, September). Orientation to fMRI. Presented at the \href{https://osf.io/hym23/}{Modeling Developmental Change workshop}, Portland, OR.
+
+\ind (\textit{co-presenter}) Pfeifer, J. H., \& \textbf{Flournoy, J. C.} (2016, April). Characterizing longitudinal change in brain function: Some problems and solutions. Presented at the Modeling Developmental Change conference, Eugene, OR.
+
+\ind (\textit{contributor}) Srivastava, S., \textbf{Flournoy, J. C.}, Lawless DesJardins, N., \& Saucier, G. (2015, June). Effects of Work Roles and Investments on Personality Change in Adulthood: Findings from a 4-year Accelerated Longitudinal Study. Presented at the 4th biennial meeting of the Association for Research in Personality, St. Louis, MO.
+
+\ind (\textit{contributor}) Tackman, A. M., Srivastava, S., \textbf{Flournoy, J. C.}, \& Saucier, G. (2015, February). Relationships and personality development in adulthood: A multiple-informant approach. Presented at the 16th annual meeting of the Society of Personality and Social Psychology, Long Beach, CA.
+
+\ind (\textit{presenter}) \textbf{Flournoy, J. C.}, Moore III, W. E., \& Pfeifer, J. H. (2014, September). Using fMRI to study child and adolescent development: Thoughts from the trenches. Presented at the Special Meeting of the Society for Research in Child Development on Developmental Methodology, San Diego, CA.
+
+%% Publications
+\bigskip
+\marginhead{\sffamily {\vskip 0.5em} Posters}
+\medskip
+
+\ind Flannery, J., Peake, S. J., \textbf{Flournoy, J. C.}, Alberti, S. L., Mobasser, A., Fisher, P. A., \& Pfeifer, J. H. (2016). Neural Outcomes of Risk Decision: Prediction of Subsequent Behavioral Decision Across Social Contexts in Adolescence. Presented at the Annual Social Affective Neuroscience Conference, New York, NY.
+
+\ind Flannery, J. E., Giuliani, N., \textbf{Flournoy, J. C.}, \& Pfeifer, J. H. (2015). Developmental Changes in Affect Processing: Brain Functionand Connectivityto Peer Faces. Presented at the 8th Annual Meeting of the Social Affective Neuroscience Society Annual Meeting, Boston, MA.
+
+\ind Flannery, J., Giuliani, N., \textbf{Flournoy, J. C.}, \& Pfeifer, J. H. (2015). Affective Reactivity and Regulation Across Adolescence: Neural Responses to Dynamic Peer Emotions. Presented at the Social Affective Neuroscience Society Annual Meeting, Boston, MA.
+
+\ind Flannery, J., Peake, S. J., \textbf{Flournoy, J. C.}, Alberti, S. L., Mobasser, A., Fisher, P. A., \& Pfeifer, J. H. (2015). Positive and Negative Neural Feedback Processing of Risk Decisions Across Social Contexts in Adolescents. Presented at the 3rd Annual Flux Congress, Leiden, Netherlands.
+
+\ind \textbf{Flournoy, J. C.}, Peake, S. J., Alberti, S. L., Flannery, J. E., Mobasser, A., Fisher, P. A., \& Pfeifer, J. H. (2015). Evaluation of a Bayesian cognitive model for adolescent risky decision making in the Stoplight Game. Presented at the Flux Congress, Leiden, Netherlands. \href{https://doi.org/10.6084/m9.figshare.5393329.v1}{10.6084/m9.figshare.5393329.v1}
+
+\ind \textbf{Flournoy, J. C.}, Srivastava, S., \& Saucier, G. (2015). A Network Approach to Longitudinal Personality Change. Presented at the Association for Research in Personality, 4th Biennial Meeting, St. Louis, MO. \newline\href{https://doi.org/10.6084/m9.figshare.1447279.v2}{10.6084/m9.figshare.1447279.v2}
+
+\ind Flannery, J., Giuliani, N., \textbf{Flournoy, J. C.}, \& Pfeifer, J. H. (2014). Dynamic Neuropsychological Emotion Regulation Profiles Among Youth, 10-22 Year Old. Presented at the International Society of Developmental Psychobiology, Washington, D.C.
+
+\ind \textbf{Flournoy, J. C.}, Giuliani, N., Hill, A., Moore III, W. E., \& Pfeifer, J. H. (2014). Labeling Emotional Faces Changes Affective Processing. Presented at the The Society for Research on Adolescence 15th Biennial Meeting, Austin, TX.
+
+\ind \textbf{Flournoy, J. C.}, Srivastava, S., Dapretto, M., \& Pfeifer, J. H. (2014). Correlated Change in Components of Empathy During Adolescence. Presented at the The Society for Personality and Social Psychology 15th Annual Meeting, Austin, TX.
+
+\ind \textbf{Flournoy, J. C.}, Tackman, A., Moore III, W. E., Pfeifer, J. H., Mazziotta, J. C., Iacoboni, M., \& Dapretto, M. (2014). Effect of Empathy on Prosocial Behavior Mediated by Brain Across the Transition into Adolescence. Presented at the Social \& Affective Neuroscience Society 7th Annual Meeting, Denver, CO.
+
+\ind \textbf{Flournoy, J. C.}, Moore III, W. E., Srivastava, S., Mazziotta, J. C., Iacoboni, M., Dapretto, M., \& Pfeifer, J. H. (2013). Neural Correlates of Empathy Development During Early Adolescence. Presented at the Social \& Affective Neuroscience Society 6th Annual Meeting, San Francisco, CA.
+
+\ind Chen, E., Anker, L., \textbf{Flournoy, J.}, Kovachy, B., Blaisdell, K., Weinkam, T., … O’Hara, R. (2011). Comparison of Amount of REM Sleep and Cognitive Abilities in Normal Older Adults and Those with Sleep Apnea. Presented at the International College Of Geriatric Psychoneuropharmacology 11th Annual Meeting.
+
+\ind \textbf{Flournoy, J.}, Weinkam, T., Hallmayer, J., \& O’Hara, R. (2011). Anxiety, Sleep Efficiency, and 5-HTTLPR Genotype in Older Adults. Presented at the Cognitive Neuroscience Society 18th Annual Meeting, San Francisco, CA.
+
+\ind Marcus, P., Thompson, W. K., \textbf{Flournoy, J.}, Vahia, I., Lin, X., Hallmayer, J., … O’Hara, R. (2010). 5-HTTLPR Short allele is Associated with Poorer Self-Perceptions of Successful Aging in Older Adults. Presented at the International College Of Geriatric Psychoneuropharmacology 10th Annual Meeting, Athens, Greece.
+
+\marginhead{\sffamily {\vskip 0.6em} Chapters}
+\medskip
+
+\ind Sudheimer, K., \textbf{Flournoy, J.}, Gershon, A., Demuth, B., Schatzberg, A., \& O’Hara, R. (2013). The HPA Axis and Late Life Depression. In H. Lavretsky, M. Sajatovic, \& C. Reynolds (Eds.), Late-Life Mood Disorders (1st ed.). Oxford University Press, USA.
+
+
+\bigskip
+\marginhead{\sffamily {\vskip 0.3em}Awards}
+\medskip
+
+\ind Gary E. Smith Summer Professional Development Award, 2015
+
+\ind Clarence and Lucille Dunbar Scholarship , 2014
+
+\marginhead{\sffamily {\vskip 0.6em}Special training}
+\medskip
+
+\ind \textit{ICPSR Summer Program in Quantitative Methods of Social Research, 2015}\newline 
+Causal Inference for the Social Sciences\newline
+Advanced Bayesian Models for the Social Sciences
+
+
+
+\marginhead{\sffamily {\vskip 0.6em}Service}
+\medskip
+
+\ind \textit{Co-organizer}: \newline Brainhack Global 2017 @ Eugene, OR
+
+\ind \textit{Facilitator}: \newline UO Data Science Club, 2013--2017
+
+\ind \textit{Reviewer}:\newline 
+Developmental Cognitive Neuroscience
+
+\ind \textit{Co-reviewer}: \newline Developmental Cognitive Neuroscience\newline Society for Research in Child Development, Biennial Meeting, 2017\newline Journal of the American Academy of Child and Adolescent Psychiatry \newline Developmental Neuroscience
+
+\ind \textit{Member}: \newline Graduate Admissions Committees, Psychology, University of Oregon, 2014
+
+\ind \textit{Coordinator}: \newline Developmental Psychology Brown Bag, University of Oregon, Winter 2013
+
+\bigskip
+\marginhead{\sffamily {\vskip 0.3em}Professional Memberships}
+\medskip
+\ind Member, Society for the Improvement of Psychological Science, 2018-2020
+
+\end{document}
